@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <title>html audioPlayer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style type="text/css" rel="stylesheet">
+	.progress{ margin-top:7px;}
+	.voice{ margin-top:7px;}
+  	.glyphicon-loading{ width: 23px; height: 23px; background-image: url(./fonts/loading.gif); background-repeat: no-repeat;}
+    </style>
+    <script type="application/javascript" src="./js/audio.js"></script>
     </head>
     <body>
     	<div class="container-fluid">
@@ -18,7 +23,7 @@
     			<audio id="audio" width="466px" height="180px"  prelode>
     				<source src="./audio/test.mp3" type="audio/mpeg">
     			</audio>
-    			<div class="col-sm-1">
+    			<div class="btn btn-default col-sm-1" id="play-pause">
     				<span class="glyphicon  glyphicon-play"></span>
     			</div>
     			<div class="col-sm-10">
@@ -27,8 +32,8 @@
     				<span class="sr-only">60% Complete</span>
     				</div>
     			</div>
-    			<
-    			<div class="col-sm-1"><span class="glyphicon  glyphicon-volume-up"></span></div>
+    			</div>	
+    			<div class="col-sm-1 voice"><span class="glyphicon  glyphicon-volume-up"></span></div>
     			</div>
     			</div>
     		</div>
