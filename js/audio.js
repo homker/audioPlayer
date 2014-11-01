@@ -9,6 +9,7 @@ window.onload =function(){
 	var progressbar = document.getElementsByName("progressbar")[0];
 	var loadprogressbar = document.getElementsByName("loadprogressbar")[0];
 	var playType;
+	var start = false;
 	if (!player) {
 		player  = new Audio();
 	}else{
@@ -22,21 +23,19 @@ window.onload =function(){
 		playType = false;
 	}
 	playButton.addEventListener("click",function(){
-		if (playType) {
+		if (playType&&start==false) {
 			play.className = play.className.replace("glyphicon-play","glyphicon-loading");
-		};
+			start = true;
+			player.play();
+		}else if(start == true){
+			player.pause();
+			play.className = play.className.replace("glyphicon-pause","glyphicon-play");
+			start = false;
+		}
 	},false);
 	player.addEventListener('canplay',function(){
-		play.className = play.className.replace("glyphicon-play","glyphicon-pause");
-		player.play();
+		play.className = play.className.replace("glyphicon-loading","glyphicon-pause");
 	},false);
-	player.addEventListener('canplaythrough',function(){
-		//alert("hah");
-	},false);	
-	player.addEventListener( ' loadeddata ' ,function(){
-		
-	},false);
-	
 	setInterval(function(){
 		var  loaded = Math.floor(player.buffered.end(0) / player.duration  * 100 );
 		var played = Math.floor(player.played.end(0) / player.duration * 100);
