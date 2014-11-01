@@ -36,6 +36,9 @@ window.onload =function(){
 	player.addEventListener('canplay',function(){
 		play.className = play.className.replace("glyphicon-loading","glyphicon-pause");
 	},false);
+	player.addEventListener('playing',function(){
+		play.className = play.className.replace("glyphicon-loading","glyphicon-pause");
+	},false);
 	setInterval(function(){
 		var  loaded = Math.floor(player.buffered.end(0) / player.duration  * 100 );
 		var played = Math.floor(player.played.end(0) / player.duration * 100);
