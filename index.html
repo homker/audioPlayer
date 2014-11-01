@@ -9,6 +9,7 @@
 	.progress{ margin-top:7px;}
 	.voice{ margin-top:7px;}
   	.glyphicon-loading{ width: 24px; height: 24px; background-image: url(./fonts/loading.gif); background-repeat: no-repeat;}
+  	.progress-bar-load{ background-color: #5a5a5a;}
     </style>
     <script type="application/javascript" src="./js/audio.js"></script>
     </head>
@@ -28,8 +29,11 @@
     			</div>
     			<div class="col-sm-10">
     			<div class="progress">
-    				<div class="progress-bar" role="progressbar" aria-valuenoew="10" aria-valuemax="max" style="width:10%" name="progressbar">
+    				<div class="progress-bar" role="progressbar" style="width:0%" name="progressbar">
     				<span class="sr-only">60% Complete</span>
+    				</div>
+    				<div class="progress-bar progress-bar-load" role="progressbar" style="width:0%" name="loadprogressbar">
+    					<span class="sr-only">60% Complete</span>
     				</div>
     			</div>
     			</div>	

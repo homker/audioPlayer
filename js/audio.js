@@ -6,7 +6,8 @@ window.onload =function(){
 	var type = src[0].type;
 	var playButton = document.getElementById("play-pause");
 	var play = document.getElementById("play-pause").childNodes[1];
-	var progressbar = document.getElementsByName("progressbar");
+	var progressbar = document.getElementsByName("progressbar")[0];
+	var loadprogressbar = document.getElementsByName("loadprogressbar")[0];
 	var playType;
 	if (!player) {
 		player  = new Audio();
@@ -38,8 +39,11 @@ window.onload =function(){
 	
 	setInterval(function(){
 		var  loaded = Math.floor(player.buffered.end(0) / player.duration  * 100 );
-		
-		//progressbar.style.width = loaded;
+		var played = Math.floor(player.played.end(0) / player.duration * 100);
+		progressbar.style.width = played + "%";
+		loaded = loaded - played;
+		//console.log(loadprogressbar);
+		loadprogressbar.style.width = loaded + "%";
 	},100);
 	var allPrpos=function(obj){
 		var props = "";
