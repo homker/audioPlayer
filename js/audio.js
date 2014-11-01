@@ -1,21 +1,16 @@
 "use strict";
 window.onload =function(){
-	var player = document.getElementsByTagName("audio");
-	var src  =  document.getElementsByTagName("source");
-	var url = src[0].src;
-	var type = src[0].type;
-	var playButton = document.getElementById("play-pause");
-	var play = document.getElementById("play-pause").childNodes[1];
-	var progressbar = document.getElementsByName("progressbar")[0];
-	var loadprogressbar = document.getElementsByName("loadprogressbar")[0];
-	var playType;
-	var start = false;
-	if (!player) {
-		player  = new Audio();
-	}else{
-		player = player[0];
-	}
-	//console.log(play.childNodes[1].className.replace("glyphicon-play","glyphicon-pause"));
+	var player = document.getElementsByTagName("audio"),
+	src  =  document.getElementsByTagName("source"),
+	url = src[0].src,
+	type = src[0].type,
+	playButton = document.getElementById("play-pause"),
+	play = playButton.childNodes[1],
+	progressbar = document.getElementsByName("progressbar")[0],
+	loadprogressbar = document.getElementsByName("loadprogressbar")[0],
+	 playType,
+	 start = false;
+	 player = (!player)?new Audio() : player[0];
 	if(player.canPlayType(type)){
 		player.src = url;
 		playType = true;
