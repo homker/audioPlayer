@@ -1,6 +1,6 @@
 "use strict";
 window.onload =function(){
-	var player = document.getElementsByTagName("audio"),
+       var player = document.getElementsByTagName("audio"),
 	src  =  document.getElementsByTagName("source"),
 	url = src[0].src,
 	type = src[0].type,
@@ -44,7 +44,6 @@ window.onload =function(){
 		var played = Math.floor(player.played.end(0) / player.duration * 100);
 		progressbar.style.width = played + "%";
 		loaded = loaded - played;
-		//console.log(loadprogressbar);
 		loadprogressbar.style.width = loaded + "%";
 	},100);
 	var allPrpos=function(obj){
