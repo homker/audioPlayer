@@ -1,5 +1,5 @@
 "use strict";
-window.onload =function(){
+(window.onload =function(){
        var player = document.getElementsByTagName("audio"),
 	src  =  document.getElementsByTagName("source"),
 	url = src[0].src,
@@ -59,5 +59,6 @@ window.onload =function(){
 		timebar.innerHTML = secondsToTime(played) + "/"  + secondsToTime(player.duration);
 		loadprogressbar.style.width = loaded + "%";
 	},100);
-}
+})();
+
 
