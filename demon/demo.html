@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>html audio Player</title>
+		<meta name="viewport" content="width=device,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+		<style type="text/css">
+			.progress{ margin-top:7px;}
+			.voice{ margin-top:7px;}
+  			.glyphicon-loading{ width: 24px; height: 24px; background-image: url(./fonts/loading.gif); background-repeat: no-repeat;}
+  			.progress-bar-load{ background-color: #5a5a5a;}
+  			.time-bar{ width: 100%; text-align: center; display: block;  position: absolute;}
+		</style>
+	</head>
+	<script type="text/javascript" src="../js/audio_new.js"></script>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="page-header">
+ 			 			<h1>A html5 audio player  <small>Do Some better than do nothing</small></h1>
+					</div>
+					<div class="player">
+						<source src="../server/index.php?token=test"/>
+						<source src="../audio/test.mp3">
+					</div>
+					<div class="displayWave">
+						<canvas id="display" style="width:100%; height:100px;" ></canvas>
+					</div>
+					<div class="btn btn-default col-sm-1" id="play-pause">
+	    				<span class="glyphicon  glyphicon-play"></span>
+		    			</div>
+		    			<div class="col-sm-10">
+		    			<div class="progress">
+		    				<span class="time-bar" name="timebar"> 60%</span>
+		    				<div class="progress-bar" role="progressbar" style="width:0%" name="progressbar">
+		    				<span class="sr-only">60% Complete</span>
+		    				</div>
+		    				<div class="progress-bar progress-bar-load" role="progressbar" style="width:0%" name="loadprogressbar">
+		    					<span class="sr-only">60% Complete</span>
+		    				</div>
+		    			</div>
+		    			</div>	
+		    			<div class="col-sm-1 voice"><span class="glyphicon  glyphicon-volume-up"></span></div>
+		    			</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
