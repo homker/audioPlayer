@@ -1,7 +1,7 @@
 "use strict";
 
 window.onload =function(){
-      var Audio=AudioContext||webkitAudioContext,
+      var Audio=window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext,
       	player = new Audio(),
       	request = new XMLHttpRequest(),
       	srouce = document.getElementsByTagName('source'),
@@ -37,11 +37,17 @@ window.onload =function(){
       			analyser.getByteFrequencyData(waveByteDate);
       			displayWave(waveByteDate);
       		},10)
-      		//source.start(0);
+      		source.start(0);
       		source.ended = function(){
       			document.getElementById("wave").getContext("2d").clearRect(0,0,1024,100);
       			clearInterval(handler);
       		}
+                                          source.stop = function(){
+                                                if(!source.stop){
+                                                      source.stop = source.noteOff;
+                                                }
+
+                                          };
       	},
       	displayWave = function(waveByteDate){
       		var  canvasContext = document.getElementById("display").getContext('2d');
@@ -57,7 +63,7 @@ loadeAduio();
 console.log(player);
 console.log(player.destination.context.currentTime);
 setInterval(function(){
-	//console.log(secondsToTime(player.currentTime));
+	console.log(secondsToTime(player.currentTime));
 },100);	
 }
 
