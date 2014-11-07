@@ -65,9 +65,11 @@
 		start = false;
 		clearInterval(handler);
 	},false);
+	//console.debug(processor);
 	media.connect(processor);
 	//analyser.smoothingTimeConstant = 0.85;
 	processor.connect(Context.destination);
+
 	processor.onaudioprocess = function(e){
 		 var input = e.inputBuffer.getChannelData(0);
 		 var output = e.outputBuffer.getChannelData(0);
@@ -75,16 +77,13 @@
 		 	output[i] = input[i];
 		 }
 		 displayWave(output);
-		 //console.log(output);
 	};
-	//processor;
-	console.log(processor);
+	//console.log(processor);
 	var handler = setInterval(function(){
 		var  loaded = Math.floor(player.buffered.end(0) / player.duration  * 100 );
 		var played = Math.floor(player.played.end(0) / player.duration * 100);
 		progressbar.style.width = played + "%";
 		loaded = loaded - played;
-		//console.log(secondsToTime(played));
 		timebar.innerHTML = secondsToTime(played) + "/"  + secondsToTime(player.duration);
 		loadprogressbar.style.width = loaded + "%";
 	},100);
