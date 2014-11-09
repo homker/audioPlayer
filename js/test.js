@@ -15,6 +15,7 @@
 	timebar = document.getElementsByName("timebar")[0],
 	 playType,
 	 start = false,
+	 s = {48:261.6,49:330,50:370,51:392,52:440,53:494,54:277},
 	 secondsToTime = function( secs ){  //the function to make the seconds to time like the i:s
 		var hoursDiv = secs / 3600, hours = Math.floor( hoursDiv ), minutesDiv = secs % 3600 / 60, minutes = Math.floor( minutesDiv ), seconds = Math.ceil( secs % 3600 % 60 );
 		if( seconds > 59 ) { seconds = 0; minutes = Math.ceil( minutesDiv ); }
@@ -41,7 +42,6 @@
 	 player = (!player)?new Audio() : player[0];
 	 var 	media = Context.createMediaElementSource(player);//get the source from the audio
 	playButton.addEventListener("click",function(){
-
 		if (start==false) {
 			changeClassName(play,"glyphicon-play","glyphicon-loading");
 			start = true;
@@ -65,7 +65,27 @@
 		start = false;
 		clearInterval(handler);
 	},false);
-	//console.debug(processor);
+	console.debug(processor);
+	// some thing for the keybroad audio
+	for( var i in s){
+		var  value = s[i];
+		s[i] = Context.createOscillator();
+		s[i].frequency.value = value;
+		s[i].start();
+	}
+	window.addEventListener("keydown",function(e){
+		//console.log(e.keyCode);
+		if(e = s[e.keyCode]){
+			console.log(e);
+			e.connect(processor);
+		}
+	});
+	window.addEventListener("keyup",function(e){
+		if(e=s[e.keyCode]){
+			e.disconnect();
+		}
+	})
+	// for the mp3 audio
 	media.connect(processor);
 	//analyser.smoothingTimeConstant = 0.85;
 	processor.connect(Context.destination);
@@ -86,7 +106,7 @@
 		loaded = loaded - played;
 		timebar.innerHTML = secondsToTime(played) + "/"  + secondsToTime(player.duration);
 		loadprogressbar.style.width = loaded + "%";
-	},100);
+	},1000);
 })();
 
 
