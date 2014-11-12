@@ -10,6 +10,6 @@ v3.0 can play mp3 and key down event
 [online demo2][demo1]
 
 [online demo3][demo2]
-[demo]:audioPlayer.sinaapp.com/audio/index.html
-[demo1]:audioPlayer.sinaapp.com/audio/demon/demo.html
-[demo2]:audioPlayer.sinaapp.com/audio/demon/demo3.html
+[demo]:http://audioPlayer.sinaapp.com/audio/index.html
+[demo1]:http://audioPlayer.sinaapp.com/audio/demon/demo.html
+[demo2]:http://audioPlayer.sinaapp.com/audio/demon/demo3.html
