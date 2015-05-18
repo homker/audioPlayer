@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<button id="stop">stop</button>
+<button id="play">play</button>
+<button id="back">back</button>
+<script type="application/javascript">
+    (function () {
+
+        Audio.prototype.stop = function () {
+            this.pause();
+            this.currentTime = 0;
+        };
+        var player = new Audio("../audio/test.mp3"),
+                stop = document.getElementById("stop"),
+                play = document.getElementById("play"),
+                back = document.getElementById("back");
+        //player.src = "../audio/test.mp3";
+        //player.play();
+        stop.addEventListener("click", function () {
+            player.stop();
+        }, false);
+        play.addEventListener("click", function () {
+            player.play();
+        }, false);
+        back.addEventListener("click", function () {
+            player.pause();
+            player.playbackRate = -1;
+            player.play();
+        }, false);
+
+    })();
+</script>
+</body>
+</html>

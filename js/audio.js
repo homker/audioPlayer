@@ -19,8 +19,7 @@
 	},
 	changeClassName = function(obj, firstName, secondName){
 		obj.className = obj.className.replace(firstName,secondName);
-	}
-	 player = (!player)?new Audio() : player[0];
+	};
 	if(player.canPlayType(type)){
 		player.src = url;
 		playType = true;
@@ -33,7 +32,7 @@
 			start = true;
 			player.play();
 		}else if(start == true){
-			player.pause();
+			player.stop();
 			changeClassName(play,"glyphicon-pause","glyphicon-play");
 			start = false;
 		}
