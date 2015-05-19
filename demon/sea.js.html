@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="application/javascript" src="../node_modules/seajs/dist/sea.js"></script>
+<script type="application/javascript">
+    seajs.config({
+        base: "./js"
+    });
+    seajs.use("../js/loadAudio", function (loadAudio) {
+        var context = new AudioContext();
+        loadAudio.setconfig(context, "../audio/test.mp3", function (buffer) {
+            console.log("this");
+            var source = context.createBufferSource();
+            source.buffer = buffer;
+            source.connect(context.destination);
+            source.start(0);
+        });
+        loadAudio.start();
+    });
+</script>
+</body>
+</html>
