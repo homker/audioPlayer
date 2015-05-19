@@ -1,0 +1,26 @@
+{
+  "name": "audioPlayer",
+  "version": "1.0.0",
+  "description": "a html 5 player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/homker/audioPlayer.git"
+  },
+  "keywords": [
+    "html5",
+    "player"
+  ],
+  "author": "homker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/homker/audioPlayer/issues"
+  },
+  "homepage": "https://github.com/homker/audioPlayer",
+  "dependencies": {
+    "seajs": "^3.0.1"
+  }
+}
