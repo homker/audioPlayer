@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<button id="stop">stop</button>
+<button id="play">play</button>
+<button id="back">back</button>
+<script type="application/javascript" src="../js/loadBuffer.js"></script>
+<script type="application/javascript">
+    window.onload = init;
+    var context;
+    var bufferLoader;
+
+    function init() {
+        context = new AudioContext();
+        bufferLoader = new loadAudio(context, "../audio/test.mp3", finishedLoading);
+        bufferLoader.start();
+    }
+
+    function finishedLoading(bufferList) {
+        var source = context.createBufferSource();
+        source.buffer = bufferList;
+        source.connect(context.destination);
+        source.start(0);
+    }
+</script>
+</body>
+</html>

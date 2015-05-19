@@ -15,7 +15,8 @@
             this.pause();
             this.currentTime = 0;
         };
-        var player = new Audio("../audio/test.mp3"),
+        var count = 0,
+                player = new Audio("../audio/test.mp3"),
                 stop = document.getElementById("stop"),
                 play = document.getElementById("play"),
                 back = document.getElementById("back");
@@ -31,6 +32,42 @@
             player.pause();
             player.playbackRate = -1;
             player.play();
+        }, false);
+        player.addEventListener("loadstart", function () {
+            count++;
+            console.log(count + "- loadstart");
+        }, false);
+        player.addEventListener("stalled", function () {
+            count++;
+            console.log(count + "- stalled");
+        }, false);
+        player.addEventListener("progress", function () {
+            count++;
+            console.log(count + "- progress");
+        }, false);
+        player.addEventListener("loadedmetadata", function () {
+            count++;
+            console.log(count + "- loadedmetadata");
+        }, false);
+        player.addEventListener("waiting", function () {
+            count++;
+            console.log(count + "- waiting");
+        }, false);
+        player.addEventListener("canplay", function () {
+            count++;
+            console.log(count + "- canplay");
+        }, false);
+        player.addEventListener("canplaythrough", function () {
+            count++;
+            console.log(count + "- canplaythrough");
+        }, false);
+        player.addEventListener("suspend", function () {
+            count++;
+            console.log(count + "- suspend");
+        }, false);
+        player.addEventListener("play", function () {
+            count++;
+            console.log(count + "- play");
         }, false);
 
     })();
