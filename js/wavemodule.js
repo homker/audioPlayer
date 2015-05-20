@@ -23,17 +23,14 @@ define('wavemodule',['zepto','loadAudio'],function(require,exports,module){
             console.log("work here");
             var source = context.createBufferSource();
             source.buffer = buffer;
-            source.connect(proccesser);
-            //proccesser.connect(analyser);
-            //analyser.smoothingTimeConstant = 0.8;
-            //analyser.connect(context.destination);
+            source.connect(analyser);
+            analyser.connect(proccesser);
             proccesser.connect(context.destination);
-            //analyser.connect(context.destination);
-            //var handler = setInterval(function(){
-            //    var waveByteDate = new Uint8Array(analyser.frequencyBinCount);
-            //    analyser.getByteFrequencyData(waveByteDate);
-            //    displayWave(waveByteDate);//绘制波形
-            //},10)
+            var handler = setInterval(function(){
+                var waveByteDate = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(waveByteDate);
+                displayWave(waveByteDate);//绘制波形
+            },10)
             source.start(0);
             source.ended = function(){
                 $("#wave").getContext("2d").clearRect(0,0,1024,100);
@@ -47,22 +44,19 @@ define('wavemodule',['zepto','loadAudio'],function(require,exports,module){
 
         };
     proccesser.onaudioprocess = function(audioProcessingEvent) {
-        var inputBuffer = audioProcessingEvent.inputBuffer; //输入帧
+        var inputBuffer = audioProcessingEvent.inputBuffer, //输入帧
+            outputBuffer = audioProcessingEvent.outputBuffer; //输出帧
 
-        var outputBuffer = audioProcessingEvent.outputBuffer; //输出帧
-
-        // Loop through the output channels (in this case there is only one)
+        //循环输出通道
         for (var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
-            var inputData = inputBuffer.getChannelData(channel);
-            var outputData = outputBuffer.getChannelData(channel);
+            var inputData = inputBuffer.getChannelData(channel),//输入数据
+                outputData = outputBuffer.getChannelData(channel);//输出数据
 
-            // Loop through the 4096 samples
+            // proccesser = context.createScriptProcessor(4096,1,1), 这里的inputbuffer循环4096次
             for (var sample = 0; sample < inputBuffer.length; sample++) {
-                // make output equal to the same as the input
-                outputData[sample] = inputData[sample];
-
-                // add noise to each output sample
-                outputData[sample] += ((Math.random() * 2) - 1) * 0.2;
+                outputData[sample] = inputData[sample];//将输入数据复制到输出数据
+                // 如果想添加噪点的话，随机加上点数据就可以了~！
+                //outputData[sample] += ((Math.random() * 2) - 1) * 0.2;
             }
         }
     }
@@ -80,7 +74,7 @@ define('wavemodule',['zepto','loadAudio'],function(require,exports,module){
         window.addEventListener("keydown",function(e){
             //console.log(e.keyCode);
             if(e = s[e.keyCode]){
-                console.log(e);
+                //console.log(e);
                 e.connect(proccesser);
             }
         });
