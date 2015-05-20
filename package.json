@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/homker/audioPlayer",
   "dependencies": {
-    "seajs": "^3.0.1"
+    "seajs": "^3.0.1",
+    "zepto": "0.0.4"
   }
 }

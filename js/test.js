@@ -69,7 +69,7 @@
 	// some thing for the keybroad audio
 	for( var i in s){
 		var  value = s[i];
-		s[i] = Context.createOscillator();
+		s[i] = Context.createOscillator();//提供了产生振荡器节点的方法，使用这个节点改变频率可以生成不一样的音调
 		s[i].frequency.value = value;
 		s[i].start();
 	}
@@ -86,8 +86,9 @@
 		}
 	})
 	// for the mp3 audio
-	media.connect(processor);
-	//analyser.smoothingTimeConstant = 0.85;
+	media.connect(analyser);
+	analyser.smoothingTimeConstant = 0.85;
+	analyser.connect(processor);
 	processor.connect(Context.destination);
 
 	processor.onaudioprocess = function(e){

@@ -2,9 +2,10 @@
  * Created by homker on 2015/5/19.
  */
 
-define(function (require, exports, module) {
+define('loadAudio',[],function (require, exports, module) {
 
     exports.setconfig = function (context, url, callback) {
+        console.log('work here');
         module.context = context;
         module.url = url;
         module.onload = callback;
